@@ -24,7 +24,6 @@ export const CONTACT = {
   phone: '+44 7832 486269',
   /** wa.me needs the number in E.164 with no spaces or leading plus. */
   whatsapp: 'https://wa.me/447832486269',
-  email: 'info@iptv-koning.nl',
 };
 
 /** Shared feature list used by every single-screen plan. */

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Clock, Link2, Lock, Mail, ShieldCheck, Star, Zap } from 'lucide-react';
+import { Clock, Link2, Lock, ShieldCheck, Star, Zap } from 'lucide-react';
 import { CONTACT, FOOTER_PAGES, PAYMENT_ICONS, PAYMENT_ICONS_ALT } from '../data/iptvData';
 import { Logo, WhatsAppGlyph } from './ui';
 
@@ -56,12 +56,6 @@ export const Footer: React.FC = () => (
               <WhatsAppGlyph className="h-4 w-4 text-navy/60" />
               <a href={CONTACT.whatsapp} className="font-bold text-navy hover:text-orange">
                 {CONTACT.phone}
-              </a>
-            </li>
-            <li className="flex items-center gap-2.5">
-              <Mail className="h-4 w-4 text-navy/60" />
-              <a href={`mailto:${CONTACT.email}`} className="font-bold text-navy hover:text-orange">
-                {CONTACT.email}
               </a>
             </li>
             <li className="flex items-center gap-2.5 text-muted">

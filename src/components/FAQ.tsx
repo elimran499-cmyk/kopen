@@ -84,9 +84,14 @@ export const FAQ: React.FC = () => {
             </ul>
 
             <p className="mt-5 text-center text-[12px] text-white/70">
-              Of mail ons op{' '}
-              <a href={`mailto:${CONTACT.email}`} className="font-semibold text-white underline">
-                {CONTACT.email}
+              Of stuur ons een bericht via{' '}
+              <a
+                href={CONTACT.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-white underline"
+              >
+                WhatsApp
               </a>
             </p>
           </aside>
