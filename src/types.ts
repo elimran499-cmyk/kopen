@@ -1,65 +1,95 @@
+export interface Channel {
+  id: string;
+  name: string;
+  category: 'nl' | 'sport' | 'vod' | 'intl' | 'kids';
+  quality: '4K Ultra HD' | 'Full HD' | '60 FPS';
+  /** Emoji fallback, shown when no logo file is present. */
+  logo: string;
+  /**
+   * Resolved URL of a bundled logo image, matched on id from
+   * src/assets/logos/<id>.(png|jpg|svg|webp). Undefined when no file exists.
+   */
+  logoSrc?: string;
+  currentProgram?: string;
+  popular?: boolean;
+}
+
+export interface MediaItem {
+  id: string;
+  title: string;
+  type: 'film' | 'serie';
+  year: number;
+  rating?: number;
+  genre: string;
+  quality: '4K Ultra HD' | 'Full HD';
+  /** Resolved URL of the bundled poster image. */
+  poster: string;
+  /** Gradient shown behind the poster while it loads. */
+  accent: string;
+  badge?: string;
+}
+
+export interface MediaRow {
+  id: string;
+  title: string;
+  subtitle: string;
+  items: MediaItem[];
+}
+
 export interface PricingPlan {
   id: string;
-  duration: string;
-  price: string;
-  originalPrice: string;
-  perMonthLabel: string;
-  highlightLabel: string;
-  highlightIcon: string;
-  ribbon?: string;
-  badge?: string;
-  featured?: boolean;
-  screens: string;
+  durationMonths: number;
+  name: string;
+  price: number;
+  originalPrice: number;
+  savePercentage: number;
+  periodLabel: string;
+  isPopular?: boolean;
   features: string[];
 }
 
-export interface MultiScreenPlan {
-  id: string;
-  title: string;
-  price: string;
-  screensLabel: string;
-  badge: string;
-  badgeIcon: string;
-  connections: string;
+export type PlanTierId = 'basis' | 'premium';
+export type PlanDurationId = '3m' | '6m' | '15m';
+
+export interface PlanDuration {
+  id: PlanDurationId;
+  label: string;
+  months: number;
+  /** Discount chip, e.g. '-50%' */
+  badge?: string;
+  /** Emphasis line, e.g. 'BESTE DEAL' */
+  note?: string;
 }
 
-export interface BenefitCard {
-  id: string;
-  title: string;
-  body: string;
-}
-
-export interface StepCard {
-  id: string;
-  number: number;
-  title: string;
-  body: string;
-  bullets: string[];
-}
-
-export interface ComparisonRow {
-  id: string;
-  criterion: string;
-  iconName: string;
-}
-
-export interface CustomerReview {
-  id: string;
-  author: string;
-  location: string;
-  comment: string;
+export interface PlanTier {
+  id: PlanTierId;
+  name: string;
+  label: string;
+  features: string[];
 }
 
 export interface FAQItem {
   id: string;
   question: string;
   answer: string;
+  category?: string;
 }
 
-export interface AppLogo {
+export interface Testimonial {
   id: string;
   name: string;
-  /** Brand colour for the text fallback shown when `logo` is absent. */
-  color: string;
-  logo?: string;
+  location: string;
+  rating: number;
+  comment: string;
+  date: string;
+  verified: boolean;
+  deviceUsed: string;
+}
+
+export interface SetupStep {
+  number: number;
+  title: string;
+  description: string;
+  iconName: string;
+  detail: string;
 }

@@ -1,59 +1,76 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { AppCompat } from './components/AppCompat';
-import { Benefits } from './components/Benefits';
+import { ChannelShowcase } from './components/ChannelShowcase';
+import { FilmsSeries } from './components/FilmsSeries';
+import { Features } from './components/Features';
+import { DeviceCompatibility } from './components/DeviceCompatibility';
+import { SpeedCheckWidget } from './components/SpeedCheckWidget';
 import { Pricing } from './components/Pricing';
-import { MultiScreen } from './components/MultiScreen';
-import { BuySteps } from './components/BuySteps';
-import { HowItWorks } from './components/HowItWorks';
-import { Comparison } from './components/Comparison';
-import { Football } from './components/Football';
-import { VodRails } from './components/VodRails';
-import { Reviews } from './components/Reviews';
-import { FAQ } from './components/FAQ';
-import { FinalCta } from './components/FinalCta';
+import { SetupSteps } from './components/SetupSteps';
+import { Testimonials } from './components/Testimonials';
+import { FaqSection } from './components/FaqSection';
 import { Footer } from './components/Footer';
-import { OrderModal } from './components/OrderModal';
-import { FloatingWhatsApp } from './components/FloatingWhatsApp';
+import { WhatsAppFloating } from './components/WhatsAppFloating';
+import { MobileNav } from './components/MobileNav';
+import { SplashIntro } from './components/SplashIntro';
 
 export default function App() {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [selectedPlanId, setSelectedPlanId] = useState('plan-12m');
-
-  const handleOpenOrderModal = (planId?: string) => {
-    if (planId) setSelectedPlanId(planId);
-    setModalOpen(true);
+  // Ordering happens over WhatsApp, so every "view packages" CTA simply takes
+  // the visitor to the pricing grid where the order buttons live.
+  const handleViewPlans = () => {
+    document.getElementById('prijzen')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   return (
-    <div className="min-h-screen font-sans">
-      <Navbar onOpenOrderModal={handleOpenOrderModal} />
+    <div className="min-h-screen bg-canvas text-ink font-sans antialiased selection:bg-brand selection:text-ink">
 
-      <main>
-        <Hero onOpenOrderModal={handleOpenOrderModal} />
-        <AppCompat />
-        <Benefits />
-        <Pricing onOpenOrderModal={handleOpenOrderModal} />
-        <MultiScreen onOpenOrderModal={handleOpenOrderModal} />
-        <BuySteps />
-        <HowItWorks />
-        <Comparison />
-        <Football />
-        <VodRails />
-        <Reviews />
-        <FAQ />
-        <FinalCta />
+      {/* Brand intro, plays on every load */}
+      <SplashIntro />
+
+      {/* Sticky Top Navigation */}
+      <Navbar onOpenCheckoutModal={handleViewPlans} />
+
+      {/* Hero Banner with Smart TV & Mobile Mockups */}
+      <main id="main-content">
+        <Hero onOpenCheckoutModal={() => handleViewPlans()} />
+
+        {/* Channel Showcase & Live Guide */}
+        <ChannelShowcase onOpenCheckoutModal={() => handleViewPlans()} />
+
+        {/* Films & Series VOD Library */}
+        <FilmsSeries onOpenCheckoutModal={() => handleViewPlans()} />
+
+        {/* Pricing Cards */}
+        <Pricing onOpenCheckoutModal={handleViewPlans} />
+
+        {/* Features Grid */}
+        <Features />
+
+        {/* Interactive Network & Device Compatibility Check Widget */}
+        <SpeedCheckWidget onOpenCheckoutModal={() => handleViewPlans()} />
+
+        {/* Device Compatibility & App Setup */}
+        <DeviceCompatibility />
+
+        {/* 3-Step Simple Setup */}
+        <SetupSteps onOpenCheckoutModal={() => handleViewPlans()} />
+
+        {/* Customer Testimonials / Trustpilot Rating */}
+        <Testimonials />
+
+        {/* FAQ Accordion Section */}
+        <FaqSection />
       </main>
 
-      <Footer />
-      <FloatingWhatsApp />
+      {/* Footer */}
+      <Footer onOpenCheckoutModal={() => handleViewPlans()} />
 
-      <OrderModal
-        isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
-        initialPlanId={selectedPlanId}
-      />
+      <WhatsAppFloating />
+
+      {/* Floating bottom navigation, phones and tablets only */}
+      <MobileNav />
+
     </div>
   );
 }
