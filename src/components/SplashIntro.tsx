@@ -55,7 +55,7 @@ export const SplashIntro: React.FC = () => {
     >
       <LogoMark
         inverted
-        className="w-20 h-20 sm:w-24 sm:h-24"
+        className="w-28 h-28 sm:w-32 sm:h-32"
         style={{ animation: 'splash-mark-in 700ms cubic-bezier(0.22, 1, 0.36, 1) both' }}
       />
 

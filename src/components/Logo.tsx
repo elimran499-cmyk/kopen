@@ -47,6 +47,6 @@ export const Logo: React.FC<LogoProps> = ({ inverted = false, className = '' }) 
     alt="IPTV Koning — beste IPTV in Nederland"
     width={1000}
     height={250}
-    className={`h-10 sm:h-11 w-auto object-contain ${className}`}
+    className={`h-14 sm:h-16 w-auto object-contain ${className}`}
   />
 );
